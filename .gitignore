@@ -31,3 +31,6 @@ npm-debug.log
 
 #flickr local data
 data/flickr
+
+#secrets
+secrets.json
