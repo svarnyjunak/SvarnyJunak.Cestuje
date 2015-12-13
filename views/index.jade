@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h1 Švarný junák na cestách
+  
+  div(class="photosets")
+    each photoset in photosets
+      div(class="gallery-preview")
+        a(href="photoset/#{photoset.id}")
+          img(src="http://farm#{photoset.farm}.static.flickr.com/#{photoset.server}/#{photoset.primary}_#{photoset.secret}.jpg" height="300")
+          h2 
+            span #{photoset.title._content} 
