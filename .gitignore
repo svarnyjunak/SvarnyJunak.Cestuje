@@ -34,3 +34,6 @@ data/flickr
 
 #secrets
 secrets.json
+
+#vscode files
+.vscode
