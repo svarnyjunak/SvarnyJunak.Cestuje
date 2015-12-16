@@ -6,7 +6,12 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var fs = require("fs");
 var flickr = require('flickrapi'),
-    flickrOptions = require('./secrets.json').flickr;
+    flickrOptions = {
+      flickr: {
+        api_key: process.env.API_KEY,
+        user_id: process.env.USER_ID
+      }     
+    };
 var routes = require('./routes/index');
 var photoset = require('./routes/photoset');
 var users = require('./routes/users');
