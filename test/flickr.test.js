@@ -8,7 +8,7 @@ describe('flickr', function() {
        });
        
        describe('.echo(options)', function () {
-         it('result should return a request echo', function(done) {
+         it('should load request echo', function(done) {
             var options = {
                 api_key: process.env.API_KEY,
                 foo: "bar"
