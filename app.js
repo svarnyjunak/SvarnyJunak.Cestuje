@@ -5,11 +5,12 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var fs = require("fs");
-var flickr = require('flickrapi'),
-    flickrOptions = {
+var flickrOptions = {
         api_key: process.env.API_KEY,
         user_id: process.env.USER_ID     
     };
+var flickr = require('./flickr');
+    
 var routes = require('./routes/index');
 var photoset = require('./routes/photoset');
 var users = require('./routes/users');
@@ -50,6 +51,7 @@ app.use(function(req, res, next) {
 // will print stacktrace
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
+    console.log('xyz');
     res.status(err.status || 500);
     res.render('error', {
       message: err.message,

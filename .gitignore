@@ -34,6 +34,8 @@ data/flickr
 
 #secrets
 secrets.json
+.env
 
 #vscode files
 .vscode
+
