@@ -36,5 +36,10 @@ module.exports = {
         getPhotos: function(options, callback, error) {
             return callFlickr('flickr.photosets.getPhotos', options, callback, error);    
         },
+    },
+    test : {
+        echo: function(options, callback, error) {
+            return callFlickr('flickr.test.echo', options, callback, error);
+        }
     }
 };
