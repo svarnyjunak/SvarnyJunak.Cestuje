@@ -29,6 +29,11 @@ var callFlickr = function(method, options, callback, error) {
 };
 
 module.exports = {
+    photos: {
+        getSizes: function (options, callback, error) {
+            return callFlickr('flickr.photos.getSizes', options, callback, error);    
+        },    
+    },
     photosets: {
         getList: function (options, callback, error) {
             return callFlickr('flickr.photosets.getList', options, callback, error);
