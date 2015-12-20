@@ -4,7 +4,53 @@ block content
   h1 Švarný junák na cestách
   h2 #{model.photoset.title}
   each photo in model.photoset.photo
-    div(class="photo")
+    div(class="photo", data-img-url="http://farm#{photo.farm}.static.flickr.com/#{photo.server}/#{photo.id}_#{photo.secret}_b.jpg")
       a(href="https://www.flickr.com/photos/#{model.userId}/#{photo.id}")
         img(src="http://farm#{photo.farm}.static.flickr.com/#{photo.server}/#{photo.id}_#{photo.secret}_z.jpg", height="400", title="#{photo.title}")
       h3 #{photo.title} &nbsp;
+  
+  div(id="gallery")
+    div(id="picture")
+        img
+
+  script(type='text/javascript').
+    (function () {
+        var gallery = document.getElementById("gallery");
+        var picture = document.getElementById("picture");
+        var currentPicture;
+        
+        function showPicture(element) {
+            currentPicture = element;
+            
+            var photoUrl = element.getAttribute("data-img-url");                
+            var img = gallery.getElementsByTagName("img")[0];
+            img.setAttribute("src", '');
+            img.setAttribute("src", photoUrl);
+        };
+        
+        var photos = document.getElementsByClassName("photo");
+        for(var i = 0, length = photos.length;i < length; i++) {
+            var photo = photos[i]; 
+            photo.onclick = function (e) {
+                e.preventDefault();
+
+                showPicture(this);                
+                gallery.style.visibility = "visible";
+            };
+        }
+        
+        picture.onclick = function(e) {
+            e.stopPropagation();
+            
+            if(currentPicture) {
+                var picture = currentPicture.nextSibling;
+                if(picture && picture.className === 'photo') {
+                    showPicture(picture);
+                }    
+            }
+        };
+        
+        gallery.onclick = function() {
+            gallery.style.visibility = "hidden";
+        };
+    })();
