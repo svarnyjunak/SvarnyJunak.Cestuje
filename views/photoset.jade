@@ -4,6 +4,7 @@ block content
   h1 Švarný junák na cestách
   h2 #{model.photoset.title}
   each photo in model.photoset.photo
-    span(class="photo")
+    div(class="photo")
       a(href="https://www.flickr.com/photos/#{model.userId}/#{photo.id}")
-        img(src="http://farm#{photo.farm}.static.flickr.com/#{photo.server}/#{photo.id}_#{photo.secret}_z.jpg", height="400")
+        img(src="http://farm#{photo.farm}.static.flickr.com/#{photo.server}/#{photo.id}_#{photo.secret}_z.jpg", height="400", title="#{photo.title}")
+      h3 #{photo.title} &nbsp;
