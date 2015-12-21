@@ -1,10 +1,11 @@
+/* jshint node: true */
+
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var fs = require("fs");
 var flickrOptions = {
         api_key: process.env.API_KEY,
         user_id: process.env.USER_ID     

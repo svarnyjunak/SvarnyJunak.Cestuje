@@ -1,3 +1,5 @@
+/* jshint node: true */
+
 var express = require('express');
 var router = express.Router();
 
@@ -11,7 +13,7 @@ router.get('/', function(req, res, next) {
     var callback = function(result) {        
         var titleDoNotStartWithHastag = function(gallery) {
             return gallery.title._content.charAt(0) !== "#";
-        }
+        };
           
         var photosets = result.photosets.photoset.filter(titleDoNotStartWithHastag);
         res.render('index', { photosets: photosets });

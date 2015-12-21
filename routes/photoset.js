@@ -1,3 +1,5 @@
+/* jshint node: true */
+
 var express = require('express');
 var router = express.Router();
 
@@ -16,7 +18,7 @@ router.get('/:id', function(req, res, next) {
     
     var error = function(e) {
         res.status(500).send(e);
-    }
+    };
     
     req.flickr.photosets.getPhotos(options, callback, error);
 });

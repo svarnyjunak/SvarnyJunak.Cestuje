@@ -1,11 +1,14 @@
+/* jshint node: true */
+
 var https = require('https');
-//var url = 'https://api.flickr.com/services/rest/?format=json&method=flickr.test.echo&name=value&api_key=eb9e976333304c9a78a1b9a7fd7da61b';
 var flickrUrl = 'https://api.flickr.com/services/rest/?format=json&nojsoncallback=?';
 var getFlickrUrl = function(method, options) {
     var url = flickrUrl + "&method=" + method;
     
     for(var option in options) {
-        url += '&' + option + '=' + options[option];        
+        if (options.hasOwnProperty(option)) {
+            url += '&' + option + '=' + options[option];
+        }        
     }
     
     return url;

@@ -1,6 +1,8 @@
 var expect = require('chai').expect;
 var flickr = require('../flickr.js');
 
+/* jshint node: true */
+
 describe('flickr', function() {
    describe('.test', function() {
        it('should be defined namespace', function() {
