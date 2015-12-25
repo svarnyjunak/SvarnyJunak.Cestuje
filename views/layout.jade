@@ -1,11 +1,15 @@
 doctype html
 html
   head
-    title= title
+    title
+        Švarný junák - #{model.title}
     link(rel='stylesheet', href='/stylesheets/style.css')
     meta(name="viewport", content="width=device-width,initial-scale=1")
   body
-      h1 
-        a(href="/")
-          Švarný junák na cestách
+    div(id="heading")
+        h1 
+            a(href="/")
+                Švarný junák na cestách
+        if model && model.title
+            h2= model.title
     block content

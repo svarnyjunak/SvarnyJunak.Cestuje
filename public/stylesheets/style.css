@@ -1,17 +1,22 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  text-align: center;
 }
 
 a {
   color: black;
 }
 
-h1 {
-  font-size: 3em;
+
+#heading {
+  margin-left: 2em;    
 }
 
-h1 a {
+#heading h1 {
+  font-size: 3em;
+  margin-bottom: .5em;
+}
+
+#heading h1 a {
     text-decoration: none;
 }
 
@@ -25,6 +30,11 @@ h1 a {
   -webkit-box-shadow: 10px 10px 5px 0px rgba(112,112,112,0.13);
   -moz-box-shadow: 10px 10px 5px 0px rgba(112,112,112,0.13);
   box-shadow: 10px 10px 5px 0px rgba(112,112,112,0.13);
+}
+
+.galleries {
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .gallery-preview {

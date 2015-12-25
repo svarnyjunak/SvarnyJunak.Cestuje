@@ -13,6 +13,7 @@ router.get('/:id', function(req, res, next) {
     
     var callback = function(result) {
         result.userId = options.user_id;
+        result.title = result.photoset.title;
         res.render('photoset', { model: result });
     };
     

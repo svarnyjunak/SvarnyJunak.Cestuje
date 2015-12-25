@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
         };
           
         var photosets = result.photosets.photoset.filter(titleDoNotStartWithHastag);
-        res.render('index', { photosets: photosets });
+        res.render('index', {model: { photosets: photosets }});
     };
     
     var error = function(e) {
