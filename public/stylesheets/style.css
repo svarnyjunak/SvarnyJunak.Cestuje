@@ -32,8 +32,8 @@ h1 a {
   float: left;
   margin-top: 1em;
   margin-bottom: 1em;
-  width: 500px;
-  height: 350px;
+  width: 480px;
+  height: 330px;
 }
 
 @media (min-width: 520px) {
