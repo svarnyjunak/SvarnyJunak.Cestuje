@@ -1,7 +1,6 @@
 extends layout
 
 block content
-  h1 Švarný junák na cestách
   h2 #{model.photoset.title}
   each photo in model.photoset.photo
     div(class="photo", data-img-url="http://farm#{photo.farm}.static.flickr.com/#{photo.server}/#{photo.id}_#{photo.secret}_b.jpg")
