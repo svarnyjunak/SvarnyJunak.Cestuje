@@ -10,6 +10,7 @@ var flickrOptions = {
     api_key: process.env.API_KEY,
     user_id: process.env.USER_ID
 };
+
 var flickr = require('./flickr');
 
 var routes = require('./routes/index');
@@ -41,7 +42,6 @@ app.use('/users', users);
 
 // catch 404 and show static page.
 app.use(function(req, res) {
-    console.log('xyz');
     res.status(404);
     res.sendFile(__dirname  + '/public/404.html');
 });
@@ -52,7 +52,6 @@ app.use(function(req, res) {
 // will print stacktrace
 if (app.get('env') === 'development') {
     app.use(function (err, req, res, next) {
-        console.log('xyz');
         res.status(err.status || 500);
         res.render('error', {
             message: err.message,
