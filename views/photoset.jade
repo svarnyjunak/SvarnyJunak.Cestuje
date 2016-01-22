@@ -4,7 +4,7 @@ block content
   each photo in model.photoset.photo
     div(class="photo", data-img-url="http://farm#{photo.farm}.static.flickr.com/#{photo.server}/#{photo.id}_#{photo.secret}_b.jpg")
       a(href="https://www.flickr.com/photos/#{model.userId}/#{photo.id}")
-        img(src="http://farm#{photo.farm}.static.flickr.com/#{photo.server}/#{photo.id}_#{photo.secret}_z.jpg", height="400", title="#{photo.title}")
+        img(src="http://farm#{photo.farm}.static.flickr.com/#{photo.server}/#{photo.id}_#{photo.secret}_z.jpg" alt="#{photo.title}" height="400", title="#{photo.title}")
       h3 #{photo.title} &nbsp;
   
   div(id="gallery")
