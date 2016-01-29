@@ -1,5 +1,6 @@
 var gulp = require('gulp'),
     cssnano = require('gulp-cssnano'),
+    jshint = require('gulp-jshint'),
     uglify = require('gulp-uglify'),
     rename = require('gulp-rename'),
     notify = require('gulp-notify'),
@@ -17,10 +18,12 @@ gulp.task('styles', function() {
 
 gulp.task('scripts', function() {
    return gulp.src(jsFilter)
-        .pipe(uglify())
-        .pipe(rename({suffix: '.min'}))
-        .pipe(gulp.dest('public/javascripts/'))
-        .pipe(notify({ message: 'Javascript minification complete' }));  
+    .pipe(jshint('.jshintrc'))
+    .pipe(jshint.reporter('default'))
+    .pipe(uglify())
+    .pipe(rename({suffix: '.min'}))
+    .pipe(gulp.dest('public/javascripts/'))
+    .pipe(notify({ message: 'Javascript minification complete' }));  
 });
 
 gulp.task('default', function() {

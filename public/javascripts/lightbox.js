@@ -14,7 +14,7 @@
             img.setAttribute("src", '');
             img.setAttribute("src", photoUrl);
         }
-    };
+    }
 
     function showPrevPicture() {
         if (currentPicture) {
