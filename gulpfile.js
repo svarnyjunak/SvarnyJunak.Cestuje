@@ -2,10 +2,13 @@ var gulp = require('gulp'),
     cssnano = require('gulp-cssnano'),
     uglify = require('gulp-uglify'),
     rename = require('gulp-rename'),
-    notify = require('gulp-notify');
+    notify = require('gulp-notify'),
+    livereload = require('gulp-livereload'),
+    cssFilter = ['public/stylesheets/**/*.css', '!public/stylesheets/**/*.min.css'],
+    jsFilter = ['public/javascripts/**/*.js', '!public/javascripts/**/*.min.js'];
 
 gulp.task('styles', function() {
-  return gulp.src(['public/stylesheets/style.css'])
+  return gulp.src(cssFilter)
     .pipe(rename({ suffix: '.min' }))
     .pipe(cssnano())
     .pipe(gulp.dest('public/stylesheets/'))
@@ -13,7 +16,7 @@ gulp.task('styles', function() {
 });
 
 gulp.task('scripts', function() {
-   return gulp.src(['public/javascripts/lightbox.js'])
+   return gulp.src(jsFilter)
         .pipe(uglify())
         .pipe(rename({suffix: '.min'}))
         .pipe(gulp.dest('public/javascripts/'))
@@ -22,4 +25,11 @@ gulp.task('scripts', function() {
 
 gulp.task('default', function() {
     gulp.start('styles', 'scripts');
+});
+
+gulp.task('watch', function() {
+    gulp.watch(cssFilter, ['styles']);
+    gulp.watch(jsFilter, ['scripts']);
+    livereload.listen();
+    gulp.watch(['public/**']).on('change', livereload.changed);
 });
