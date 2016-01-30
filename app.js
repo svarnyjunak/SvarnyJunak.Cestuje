@@ -36,6 +36,12 @@ app.use(function (req, res, next) {
     next();
 });
 
+// apply content security policy
+app.use(function(req, res, next){
+    res.header("Content-Security-Policy", "default-src 'self'; object-src 'none'; img-src 'self' *.static.flickr.com;media-src; frame-src 'none'");
+    next();
+});
+
 app.use('/', routes);
 app.use('/photoset', photoset);
 app.use('/users', users);
