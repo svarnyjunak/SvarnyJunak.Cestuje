@@ -67,6 +67,35 @@ a {
    top:220px;
 }
 
+.arrow {
+    cursor: pointer;
+}
+
+.text-arrow {
+    font-size: 30em;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+#gallery .arrow.left {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    margin-left: 8em;    
+}
+
+#gallery .arrow.right {
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    margin-left: -8em;   
+}
+
+.arrow path {
+    fill: rgba(0, 0, 0, 0.2);
+    stroke: #aaaaaa;
+    stroke-width: 2px;
+}
+
 .gallery-preview h2 span{
   color: white; 
   font: bold 24px/45px Helvetica, Sans-Serif; 

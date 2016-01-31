@@ -40,7 +40,12 @@ app.use(function (req, res, next) {
 
 // apply content security policy
 app.use(function(req, res, next){
-    res.header("Content-Security-Policy", "default-src 'self'; object-src 'none'; img-src 'self' *.static.flickr.com;media-src; frame-src 'none'");
+    var csp = "default-src 'self'; object-src 'none'; img-src 'self' *.static.flickr.com;media-src; frame-src 'none'";
+    if(app.get('env') === 'development') {
+        csp = csp + "; connect-src 'self' ws://127.0.0.1:35729/livereload;";
+    }
+    console.log(csp);
+    res.header("Content-Security-Policy", csp);
     next();
 });
 
