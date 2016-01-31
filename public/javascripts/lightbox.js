@@ -1,4 +1,12 @@
 (function () {
+    function isLighboxSupported() {
+       return document.documentElement.clientWidth > 1000; 
+    }
+    
+    if(!isLighboxSupported()) {
+        return;//do not show lightbox when resolution is too small
+    }
+    
     var galleryUi = (function () {
         function createDiv(element, className) {
             var container = document.createElement("div");
@@ -150,10 +158,12 @@
 
     var photos = document.getElementsByClassName("photo");
     var onClick = function (e) {
-        e.preventDefault();
+        if(isLighboxSupported()) {        
+            e.preventDefault();
 
-        showPicture(this);
-        gallery.style.visibility = "visible";
+            showPicture(this);
+            gallery.style.visibility = "visible";
+        }
     };
 
     for (var i = 0, length = photos.length; i < length; i++) {
@@ -164,12 +174,6 @@
         e.stopPropagation();
         showNextPicture();
     };
-
-/*
-    gallery.onclick = function () {
-        hideGallery();
-    };
-*/
 
     var KEY_CODES = {
         SPACE: 8,
