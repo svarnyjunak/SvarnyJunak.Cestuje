@@ -1,65 +1,91 @@
 (function () {
     var galleryUi = (function () {
-        var xmlns = "http://www.w3.org/2000/svg";
+        function createDiv(element, className) {
+            var container = document.createElement("div");
+            container.appendChild(element);
+            container.setAttribute("class", className);
+            return container;            
+        }
         
         function supportsSvg() {
             return document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#Image", "1.1");
         }
         
-        function createSvg(path) {
-            var svg = document.createElementNS(xmlns, "svg");
-            svg.setAttributeNS(null,"width","128");
-            svg.setAttributeNS(null,"height","256");
-            svg.setAttributeNS(null, "class", "arrow");
-            svg.appendChild(path);
-            return svg;
-        }
+        var uiBuilderSvg = (function() {
+            var xmlns = "http://www.w3.org/2000/svg";
         
-        function createPathWrapper(element) {
-            var arrorContainer = document.createElement("div");
-            arrorContainer.appendChild(element);
-            return arrorContainer;            
-        }
-        
-        function createTextArrow(char) {
-            var arrow = document.createElement("span");
-            arrow.setAttribute("class", "text-arrow");
-            arrow.innerHTML = char;
-            return arrow;
-        }
-        
-        return {
-            createLeftArrow: function () {      
-                var arrow;     
-                if(supportsSvg()) {                
+            function createSvgArrow(path) {
+                var svg = document.createElementNS(xmlns, "svg");
+                svg.setAttributeNS(null,"width","128");
+                svg.setAttributeNS(null,"height","256");
+                svg.setAttributeNS(null, "class", "arrow");
+                svg.appendChild(path);
+                return svg;
+            }
+            
+            return {
+                createCloseButton: function() {
+                    var path1 = document.createElementNS(xmlns, "path");
+                    path1.setAttributeNS(null, "d", "M0,0L64,64");
+                    
+                    var path2 = document.createElementNS(xmlns, "path");
+                    path2.setAttributeNS(null, "d", "M0,64L64,0");
+                    
+                    var svg = document.createElementNS(xmlns, "svg");
+                    svg.setAttributeNS(null,"width","64");
+                    svg.setAttributeNS(null,"height","64");
+                    svg.appendChild(path1);
+                    svg.appendChild(path2);
+                    
+                    return svg;
+                },
+                createLeftArrowButton: function() {
                     var path = document.createElementNS(xmlns, "path");
                     path.setAttributeNS(null, "d", "M0,256L256,0v64L64,256l184,184v64z");
                     path.setAttributeNS(null, "transform", "scale(0.5)");
-                    arrow = createSvg(path);               
-                }
-                else {
-                    arrow = createTextArrow("<");
-                }
-                
-                var container = createPathWrapper(arrow);
-                container.setAttribute("class", "arrow left");
-                return container;                
-            },
-            createRightArrow: function() {
-                var arrow;
-                if(supportsSvg()) {
+                    return createSvgArrow(path);
+                },
+                createRightArrowButton: function() {
                     var path = document.createElementNS(xmlns, "path");
                     path.setAttributeNS(null, "d", "M0,256L256,0v64L64,256l184,184v64z");
                     path.setAttributeNS(null, "transform", "scale(0.5) rotate(180 128 256)");
-                    arrow = createSvg(path);    
-                }
-                else {
-                    arrow = createTextArrow(">");
-                }
-                
-                var container = createPathWrapper(arrow);
-                container.setAttribute("class", "arrow right");
-                return container;
+                    return createSvgArrow(path);
+                },                
+            };            
+        });
+
+        var uiBuilderText = function() {
+            function createSpan(char, className) {
+                var arrow = document.createElement("span");
+                arrow.setAttribute("class", className);
+                arrow.innerHTML = char;
+                return arrow;
+            }
+            
+            return {
+                createCloseButton: function() {
+                    return createSpan("x", "text-close-button");    
+                },
+                createLeftArrowButton: function() {
+                    return createSpan("<", "text-arrow");
+                },
+                createRightArrowButton: function() {
+                    return createSpan(">", "text-arrow");
+                },   
+            };         
+        };
+        
+        var uiBuilder = supportsSvg() ? uiBuilderSvg() : uiBuilderText();
+        
+        return {
+            createCloseButton: function() {
+                return createDiv(uiBuilder.createCloseButton(), "close-button"); 
+            },            
+            createLeftArrow: function () {      
+                return createDiv(uiBuilder.createLeftArrowButton(), "arrow left");               
+            },
+            createRightArrow: function() {
+                return createDiv(uiBuilder.createRightArrowButton(), "arrow right");
             },
         };
     })();
@@ -81,6 +107,10 @@
         showNextPicture();
         e.stopPropagation();
     };
+    
+    var closeButton = galleryUi.createCloseButton();
+    gallery.appendChild(closeButton);
+    closeButton.onclick = hideGallery;
 
     var img = document.createElement('img');
     picture.appendChild(img);
@@ -135,9 +165,11 @@
         showNextPicture();
     };
 
+/*
     gallery.onclick = function () {
         hideGallery();
     };
+*/
 
     var KEY_CODES = {
         SPACE: 8,
