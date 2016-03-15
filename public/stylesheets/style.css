@@ -21,7 +21,7 @@ a {
 }
 
 .photo {
-  margin: 1em;
+  margin: .5em;
   float: left; 
 }
 
@@ -30,6 +30,7 @@ a {
   -webkit-box-shadow: 10px 10px 5px 0px rgba(112,112,112,0.13);
   -moz-box-shadow: 10px 10px 5px 0px rgba(112,112,112,0.13);
   box-shadow: 10px 10px 5px 0px rgba(112,112,112,0.13);
+  max-width: 90vw;
 }
 
 .galleries {
@@ -53,6 +54,7 @@ a {
 }
 
 .gallery-preview img {
+  max-width: 90vw;
   position:absolute;
     left:0;
     top:0;
@@ -63,8 +65,7 @@ a {
    position:absolute;    
    color:white;
    font-weight:bold;
-   left:1em;
-   top:220px;
+   max-width: 90vw;
 }
 
 .gallery-preview h2 span{
