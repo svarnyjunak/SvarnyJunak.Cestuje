@@ -2,7 +2,10 @@ doctype html
 html
   head
     title
-        Švarný junák - #{model.title}
+        if model && model.title
+           Švarný junák - #{model.title}
+        else
+           Švarný junák 
     link(rel='stylesheet', href='/stylesheets/style.min.css')
     meta(name="viewport", content="width=device-width,initial-scale=1")
     script(type='text/javascript' src="/javascripts/ga.min.js")
