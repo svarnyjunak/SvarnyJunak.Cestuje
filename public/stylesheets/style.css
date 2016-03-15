@@ -41,10 +41,8 @@ a {
 .gallery-preview {
   position:relative;
   float: left;
-  margin-top: 1em;
-  margin-bottom: 1em;
-  width: 480px;
-  height: 330px;
+  width: 450px;
+  height: 300px;
 }
 
 @media (min-width: 520px) {
@@ -55,6 +53,7 @@ a {
 
 .gallery-preview img {
   max-width: 90vw;
+  max-height: 300px;
   position:absolute;
     left:0;
     top:0;
