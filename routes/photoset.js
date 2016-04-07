@@ -21,7 +21,9 @@ router.get('/:id', function(req, res, next) {
         res.status(500).send(e);
     };
     
-    req.flickr.photosets.getPhotos(options, callback, error);
+    req.flickr.photosets.getPhotos(options)
+        .then(callback)
+        .catch(error);
 });
 
 module.exports = router;

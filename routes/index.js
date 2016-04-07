@@ -23,7 +23,9 @@ router.get('/', function(req, res, next) {
         res.status(500).send(e);
     };
        
-    req.flickr.photosets.getList(options, callback, error);
+    req.flickr.photosets.getList(options)
+        .then(callback)
+        .catch(error);
 });
 
 module.exports = router;

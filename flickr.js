@@ -1,6 +1,7 @@
 /* jshint node: true */
 
 var https = require('https');
+var Promise = require('promise');
 var flickrUrl = 'https://api.flickr.com/services/rest/?format=json&nojsoncallback=?';
 var getFlickrUrl = function(method, options) {
     var url = flickrUrl + "&method=" + method;
@@ -14,40 +15,42 @@ var getFlickrUrl = function(method, options) {
     return url;
 };
 
-var callFlickr = function(method, options, callback, error) {
-    var url = getFlickrUrl(method, options);
-    
-    return https.get(url, function(response) {
-        var body = '';
-        response.on('data', function(d) {
-            body += d;
+var callFlickr = function(method, options) {
+    return new Promise(function(resolve, reject) {
+        var url = getFlickrUrl(method, options);
+        https.get(url, function(response) {
+            var body = '';
+            response.on('data', function(d) {
+                body += d;
+            });
+            response.on('end', function() {
+                var parsed = JSON.parse(body);
+                resolve(parsed);
+            });
+            response.on('error', function(err) {
+                reject(err);
+            });
         });
-        response.on('end', function() {
-            var parsed = JSON.parse(body);
-            callback(parsed);
-        });
-    }).on('error', function(e) {
-        error(e);
     });
 };
 
 module.exports = {
     photos: {
-        getSizes: function (options, callback, error) {
-            return callFlickr('flickr.photos.getSizes', options, callback, error);    
+        getSizes: function (options) {
+            return callFlickr('flickr.photos.getSizes', options);    
         },    
     },
     photosets: {
-        getList: function (options, callback, error) {
-            return callFlickr('flickr.photosets.getList', options, callback, error);
+        getList: function (options) {
+            return callFlickr('flickr.photosets.getList', options);
         },
-        getPhotos: function(options, callback, error) {
-            return callFlickr('flickr.photosets.getPhotos', options, callback, error);    
+        getPhotos: function(options) {
+            return callFlickr('flickr.photosets.getPhotos', options);    
         },
     },
     test : {
-        echo: function(options, callback, error) {
-            return callFlickr('flickr.test.echo', options, callback, error);
+        echo: function(options) {
+            return callFlickr('flickr.test.echo', options);
         }
     }
 };
