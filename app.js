@@ -18,7 +18,6 @@ var flickr = require('./flickr');
 
 var routes = require('./routes/index');
 var photoset = require('./routes/photoset');
-var users = require('./routes/users');
 
 var app = express();
 
@@ -42,7 +41,7 @@ app.use(function (req, res, next) {
 
 // apply content security policy
 app.use(function(req, res, next){
-    var csp = "default-src 'self'; script-src 'self' *.google-analytics.com; object-src 'none'; img-src 'self' *.static.flickr.com *.google-analytics.com stats.g.doubleclick.net;media-src; frame-src 'none'";
+    var csp = "default-src 'self'; script-src 'self' *.google-analytics.com; object-src 'none'; img-src 'self' *.static.flickr.com *.staticflickr.com *.google-analytics.com stats.g.doubleclick.net;media-src; frame-src 'none'";
     if(app.get('env') === 'development') {
         csp = csp + "; connect-src 'self' ws://127.0.0.1:35729/livereload;";
     }
@@ -54,7 +53,6 @@ app.use(function(req, res, next){
 
 app.use('/', routes);
 app.use('/photoset', photoset);
-app.use('/users', users);
 
 // catch 404 and show static page.
 app.use(function(req, res) {

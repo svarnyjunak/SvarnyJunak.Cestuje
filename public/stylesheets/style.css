@@ -22,7 +22,14 @@ a {
 
 .photo {
   margin: .5em;
-  float: left; 
+  min-height: 370px;
+  text-align: center;
+  align-content: center; 
+  display: inline-block; 
+}
+
+.photo h3 {
+    margin-bottom: 0;
 }
 
 .photo img {

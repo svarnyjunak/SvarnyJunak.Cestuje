@@ -11,10 +11,7 @@ router.get('/', function(req, res, next) {
     };
     
     var callback = function(result) {        
-        var titleDoNotStartWithHastag = function(gallery) {
-            return gallery.title._content.charAt(0) !== "#";
-        };
-          
+        var titleDoNotStartWithHastag = gallery => gallery.title._content.charAt(0) !== "#";          
         var photosets = result.photosets.photoset.filter(titleDoNotStartWithHastag);
         res.render('index', {model: { photosets: photosets }});
     };

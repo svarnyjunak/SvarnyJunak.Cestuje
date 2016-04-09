@@ -1,7 +1,6 @@
 /* jshint node: true */
 
 var https = require('https');
-var Promise = require('promise');
 var flickrUrl = 'https://api.flickr.com/services/rest/?format=json&nojsoncallback=?';
 var getFlickrUrl = function(method, options) {
     var url = flickrUrl + "&method=" + method;
