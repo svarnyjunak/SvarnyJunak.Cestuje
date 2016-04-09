@@ -2,10 +2,10 @@ doctype html
 html
   head
     title
-        if model && model.title
-           Švarný junák - #{model.title}
-        else
-           Švarný junák 
+      if model && model.title
+        | Švarný junák - #{model.title}
+      else
+        | Švarný junák 
     link(rel='stylesheet', href='/stylesheets/style.min.css')
     meta(name="viewport", content="width=device-width,initial-scale=1")
     meta(name="google-site-verification" content="jEZaQGdl3_7nVQhp-KaSJPs84gWNrqdTE8-kASxKvTo")
@@ -14,9 +14,9 @@ html
     div(id="heading")
         h1 
             a(href="/")
-                Švarný junák na cestách
+                | Švarný junák na cestách
         if model && model.title
-            h2= model.title
+          h2= model.title
     block content
     script(type='text/javascript' src="/javascripts/ga.min.js")
     
