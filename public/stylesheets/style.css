@@ -37,7 +37,13 @@ a {
   -webkit-box-shadow: 10px 10px 5px 0px rgba(112,112,112,0.13);
   -moz-box-shadow: 10px 10px 5px 0px rgba(112,112,112,0.13);
   box-shadow: 10px 10px 5px 0px rgba(112,112,112,0.13);
-  max-width: 90vw;
+}
+
+@media (max-width: 600px) {
+    .photo img {
+        max-width: 90vw;
+        height: auto;
+    }
 }
 
 .galleries {
