@@ -1,7 +1,7 @@
-var chai = require('chai');
-var expect = chai.expect;
-var assert = chai.assert;
-var flickr = require('../flickr.js');
+const chai = require('chai');
+const expect = chai.expect;
+const assert = chai.assert;
+const flickr = require('../flickr.js');
 
 /* jshint node: true */
 
@@ -13,12 +13,12 @@ describe('flickr', function() {
        
        describe('.echo(options)', function () {
           it('should return promise with request echo', function (done) {
-               var options = {
+            const options = {
                 api_key: process.env.API_KEY,
                 foo: "bar"
             };
             
-            var echo = flickr.test.echo(options);
+            const echo = flickr.test.echo(options);
             echo.then(function(result) {                
                 expect(result).to.have.a.property('foo');
                 done();
@@ -36,7 +36,7 @@ describe('flickr', function() {
       
       describe('.getSizes(options)', function () {
         it('should return promise with picture sizes', function (done) {
-            var options = {
+            const options = {
                 api_key: process.env.API_KEY,
                 photo_id: '2287530762'    
             };
