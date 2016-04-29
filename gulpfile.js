@@ -1,5 +1,6 @@
 var gulp = require('gulp'),
     cssnano = require('gulp-cssnano'),
+    stylelint = require('gulp-stylelint'),
     jshint = require('gulp-jshint'),
     uglify = require('gulp-uglify'),
     rename = require('gulp-rename'),
@@ -10,6 +11,10 @@ var gulp = require('gulp'),
 
 gulp.task('styles', function() {
   return gulp.src(cssFilter)
+    .pipe(stylelint({
+      failAfterError: false,
+      reporters: [{formatter: 'string', console: true}]
+    }))
     .pipe(rename({ suffix: '.min' }))
     .pipe(cssnano())
     .pipe(gulp.dest('public/stylesheets/'))
