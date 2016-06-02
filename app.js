@@ -46,7 +46,6 @@ app.use(function(req, res, next){
         csp = csp + "; connect-src 'self' ws://127.0.0.1:35729/livereload;";
     }
     
-    console.log(csp);
     res.header("Content-Security-Policy", csp);
     next();
 });
