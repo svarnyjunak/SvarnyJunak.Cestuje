@@ -17,7 +17,7 @@ gulp.task('styles', function() {
     }))
     .pipe(rename({ suffix: '.min' }))
     .pipe(cssnano())
-    .pipe(gulp.dest('public/stylesheets/'))
+    .pipe(gulp.dest('public/css/'))
     .pipe(notify({ message: 'Styles minification complete' }));
 });
 

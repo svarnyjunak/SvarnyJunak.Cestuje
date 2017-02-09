@@ -41,7 +41,7 @@ app.use(function (req, res, next) {
 
 // apply content security policy
 app.use(function(req, res, next){
-    var csp = "default-src 'self'; script-src 'self' *.google-analytics.com; object-src 'none'; img-src 'self' http://*.static.flickr.com http://*.staticflickr.com https://*.static.flickr.com https://*.staticflickr.com http://*.google-analytics.com https://*.google-analytics.com https://stats.g.doubleclick.net;media-src; frame-src 'none'";
+    var csp = "default-src 'self'; script-src 'self' https://cdn.jsdelivr.net/lightgallery.js/1.0.1/ *.google-analytics.com; object-src 'none'; img-src 'self' http://*.static.flickr.com http://*.staticflickr.com https://*.static.flickr.com https://*.staticflickr.com http://*.google-analytics.com https://*.google-analytics.com https://stats.g.doubleclick.net;media-src; style-src 'self' 'unsafe-inline'; frame-src 'none'";
     if(app.get('env') === 'development') {
         csp = csp + "; connect-src 'self' ws://127.0.0.1:35729/livereload;";
     }
