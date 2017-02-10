@@ -42,7 +42,7 @@ app.use(function (req, res, next) {
 // apply content security policy
 app.use(function(req, res, next){
     var csp = "default-src 'self'; script-src 'self' *.google-analytics.com; object-src 'none'; img-src 'self' http://*.static.flickr.com http://*.staticflickr.com https://*.static.flickr.com https://*.staticflickr.com http://*.google-analytics.com https://*.google-analytics.com https://stats.g.doubleclick.net;media-src; style-src 'self' 'unsafe-inline'; frame-src 'none'";
-    if(app.get('env') === 'development') {
+    if(process.env.NODE_ENV === 'development') {
         csp = csp + "; connect-src 'self' ws://127.0.0.1:35729/livereload;";
     }
     
@@ -63,7 +63,7 @@ app.use(function(req, res) {
 
 // development error handler
 // will print stacktrace
-if (app.get('env') === 'development') {
+if (process.env.NODE_ENV === 'development') {
     app.use(function (err, req, res, next) {
         res.status(err.status || 500);
         res.render('error', {
