@@ -5,6 +5,6 @@ block content
     each photoset in model.photosets
         div(class="gallery-preview")
           a(href="photoset/#{photoset.id}")
-            img(src="http://farm#{photoset.farm}.static.flickr.com/#{photoset.server}/#{photoset.primary}_#{photoset.secret}.jpg" alt="#{photoset.title._content}")
+            img(src="https://farm#{photoset.farm}.static.flickr.com/#{photoset.server}/#{photoset.primary}_#{photoset.secret}.jpg" alt="#{photoset.title._content}")
             h2 
                 span #{photoset.title._content} 

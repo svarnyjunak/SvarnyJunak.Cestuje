@@ -3,7 +3,7 @@ extends layout
 block content
   div(id="thumbnials")
     each photo in model.photoset.photo
-      div(class="photo", data-src="http://farm#{photo.farm}.static.flickr.com/#{photo.server}/#{photo.id}_#{photo.secret}_b.jpg")
+      div(class="photo", data-src="https://farm#{photo.farm}.static.flickr.com/#{photo.server}/#{photo.id}_#{photo.secret}_b.jpg")
         a(href="https://www.flickr.com/photos/#{model.userId}/#{photo.id}")
           img(src="#{photo.url}" width="#{photo.width}" height="#{photo.height}" alt="#{photo.title}" title="#{photo.title}")
         h3 #{photo.title} &nbsp;
