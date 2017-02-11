@@ -10,6 +10,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var helmet = require('helmet');
+var forceSSL = require('express-force-ssl');
 var flickrOptions = {
     api_key: process.env.API_KEY,
     user_id: process.env.USER_ID
@@ -19,14 +20,18 @@ var flickr = require('./flickr');
 
 var routes = require('./routes/index');
 var photoset = require('./routes/photoset');
+var isProduction = function() { return process.env.NODE_ENV === 'production'; };
 
 var app = express();
+if(isProduction()) {
+  app.use(forceSSL);
+}
 app.use(helmet({
   hsts: {
     maxAge: 10886400,
     includeSubDomains: true,
     preload: true,
-    setIf: function() { return process.env.NODE_ENV === 'production'; },
+    setIf: isProduction,
   }})
 );
 
