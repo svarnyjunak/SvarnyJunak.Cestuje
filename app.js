@@ -21,12 +21,13 @@ var routes = require('./routes/index');
 var photoset = require('./routes/photoset');
 
 var app = express();
-app.use(helmet())
-app.use(helmet.hsts({
-  maxAge: 10886400,
-  includeSubDomains: true,
-  preload: true
-}));
+app.use(helmet({
+  hsts: {
+    maxAge: 10886400,
+    includeSubDomains: true,
+    preload: true
+  }})
+);
 
 app.use(helmet.contentSecurityPolicy({
   directives: {
