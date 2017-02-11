@@ -27,14 +27,8 @@ router.get('/:id', function(req, res) {
                     photo.url = mediumSize.source;
                     photo.isLandscape = mediumSize.width > mediumSize.height;
                     
-                    if(mediumSize.height > maxPictureHeight) {
-                        photo.width = (mediumSize.width * (maxPictureHeight / mediumSize.height)).toFixed(0);
-                        photo.height = maxPictureHeight;     
-                    }
-                    else {
-                        photo.width = mediumSize.width;
-                        photo.height = mediumSize.height;    
-                    }
+                    photo.width = (mediumSize.width * (maxPictureHeight / mediumSize.height)).toFixed(0);
+                    photo.height = maxPictureHeight;     
                 }).catch(error);
         });
 
