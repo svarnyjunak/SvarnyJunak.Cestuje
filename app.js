@@ -25,7 +25,8 @@ app.use(helmet({
   hsts: {
     maxAge: 10886400,
     includeSubDomains: true,
-    preload: true
+    preload: true,
+    setIf: function() { return process.env.NODE_ENV === 'production'; },
   }})
 );
 
