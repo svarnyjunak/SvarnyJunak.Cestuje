@@ -33,7 +33,6 @@ app.use(helmet.contentSecurityPolicy({
   directives: {
     defaultSrc: ["'self'"],
     scriptSrc: ["'self'", '*.google-analytics.com'],
-    objectSrc: ["'none'"],
     imgSrc: ["'self'", 'https://*.static.flickr.com', 'https://*.staticflickr.com', 'http://*.google-analytics.com', 'https://*.google-analytics.com', 'https://stats.g.doubleclick.net'],
     styleSrc: ["'self'", "'unsafe-inline'"],
     frameSrc: ["'none"],
