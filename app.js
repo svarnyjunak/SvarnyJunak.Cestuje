@@ -9,6 +9,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var helmet = require('helmet');
 var flickrOptions = {
     api_key: process.env.API_KEY,
     user_id: process.env.USER_ID
@@ -20,8 +21,23 @@ var routes = require('./routes/index');
 var photoset = require('./routes/photoset');
 
 var app = express();
+app.use(helmet())
+app.use(helmet.hsts({
+  maxAge: 10886400,
+  includeSubDomains: true,
+  preload: true
+}));
 
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(helmet.contentSecurityPolicy({
+  directives: {
+    defaultSrc: ["'self'"],
+    scriptSrc: ["'self'", '*.google-analytics.com'],
+    objectSrc: ["'none'"],
+    imgSrc: ["'self'", 'https://*.static.flickr.com', 'https://*.staticflickr.com', 'http://*.google-analytics.com', 'https://*.google-analytics.com', 'https://stats.g.doubleclick.net'],
+    styleSrc: ["'self'", "'unsafe-inline'"],
+    frameSrc: ["'none"],
+  }
+}));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -38,18 +54,6 @@ app.use(function (req, res, next) {
     req.flickrOptions = flickrOptions;
     next();
 });
-
-// apply content security policy
-app.use(function(req, res, next){
-    var csp = "default-src 'self'; script-src 'self' *.google-analytics.com; object-src 'none'; img-src 'self' http://*.static.flickr.com http://*.staticflickr.com https://*.static.flickr.com https://*.staticflickr.com http://*.google-analytics.com https://*.google-analytics.com https://stats.g.doubleclick.net;media-src; style-src 'self' 'unsafe-inline'; frame-src 'none'";
-    if(process.env.NODE_ENV === 'development') {
-        csp = csp + "; connect-src 'self' ws://127.0.0.1:35729/livereload;";
-    }
-    
-    res.header("Content-Security-Policy", csp);
-    next();
-});
-
 app.use('/', routes);
 app.use('/photoset', photoset);
 
