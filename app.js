@@ -35,7 +35,7 @@ app.use(helmet.contentSecurityPolicy({
     scriptSrc: ["'self'", '*.google-analytics.com'],
     imgSrc: ["'self'", 'https://*.static.flickr.com', 'https://*.staticflickr.com', 'http://*.google-analytics.com', 'https://*.google-analytics.com', 'https://stats.g.doubleclick.net'],
     styleSrc: ["'self'", "'unsafe-inline'"],
-    frameSrc: ["'none"],
+    childSrc: ["'none'"],
   }
 }));
 
