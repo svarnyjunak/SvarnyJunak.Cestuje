@@ -24,7 +24,7 @@ var isProduction = function() { return process.env.NODE_ENV === 'production'; };
 var app = express();
 app.use(helmet({
   hsts: {
-    maxAge: 10886400,
+    maxAge: 15552001,            
     includeSubDomains: true,
     preload: true,
     setIf: isProduction,
