@@ -1,3 +1,3 @@
-lightGallery(document.getElementById("thumbnials"), {
+lightGallery(document.getElementById("thumbnails"), {
   thumbnail: true
 }); 
