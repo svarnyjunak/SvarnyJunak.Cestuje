@@ -6,8 +6,8 @@ var gulp = require('gulp'),
     rename = require('gulp-rename'),
     notify = require('gulp-notify'),
     livereload = require('gulp-livereload'),
-    cssFilter = ['public/css/**/*.css', '!public/css/**/*.min.css'],
-    jsFilter = ['public/javascripts/**/*.js', '!public/javascripts/**/*.min.js'];
+    cssFilter = ['public/css/**/*.css', '!public/css/**/*.min.css', '!public/css/**/lg*.css', '!public/css/**/lightgallery*.css'],
+    jsFilter = ['public/javascripts/**/*.js', '!public/javascripts/**/*.min.js', '!public/javascripts/**/lightgallery*.js', '!public/javascripts/**/ga*.js'];
 
 gulp.task('styles', function() {
   return gulp.src(cssFilter)
