@@ -1,22 +1,21 @@
 body {
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-
-a {
-    color: black;
+    color: #444444;
 }
 
 #heading {
-    margin-left: 2em;
+    text-align: center;
 }
 
 #heading h1 {
     font-size: 3em;
-    margin-bottom: 0.5em;
+    margin-bottom: .7em;
+    padding: .5em;
 }
 
 #heading h1 a {
     text-decoration: none;
+    color: #444444;
 }
 
 #thumbnails {

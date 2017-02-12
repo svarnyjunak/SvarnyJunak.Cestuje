@@ -1,7 +1,7 @@
 extends layout
 
 block content 
-  div(class="float-center")
+  div(id="thumbnails" class="float-center")
     each photoset in model.photosets
         div(class="gallery-preview")
           a(href="photoset/#{photoset.id}")
