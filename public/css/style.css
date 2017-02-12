@@ -19,6 +19,13 @@ a {
     text-decoration: none;
 }
 
+#thumbnails {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
 .photo {
     margin: 0.5em;
     min-height: 370px;
