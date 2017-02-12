@@ -1,6 +1,6 @@
 body {
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-    color: #444444;
+    color: #444;
 }
 
 #heading {
@@ -9,13 +9,13 @@ body {
 
 #heading h1 {
     font-size: 3em;
-    margin-bottom: .7em;
-    padding: .5em;
+    margin-bottom: 0.7em;
+    padding: 0.5em;
 }
 
 #heading h1 a {
     text-decoration: none;
-    color: #444444;
+    color: #444;
 }
 
 #thumbnails {
