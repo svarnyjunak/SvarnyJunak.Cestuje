@@ -17,7 +17,7 @@ const flickrOptions = {
   user_id: process.env.USER_ID
 };
 
-const port = process.env.PORT || "3000";
+const port = normalizePort(process.env.PORT || "3000");
 const app = express();
 app.set("port", port);
 app.use(helmet({
@@ -113,3 +113,18 @@ server.on("listening", () => {
   console.log(`app started started Listening on port ${port}`);
 });
 server.listen(port);
+
+function normalizePort(val) {
+  const p = parseInt(val, 10);
+
+  if (isNaN(p)) {
+    return val;
+  }
+
+  if (p >= 0) {
+    return p;
+  }
+
+  return false;
+}
+
