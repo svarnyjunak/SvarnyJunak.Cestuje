@@ -1,3 +1,4 @@
+const http = require("http");
 const express = require("express");
 const compress = require("compression");
 const path = require("path");
@@ -16,7 +17,9 @@ const flickrOptions = {
   user_id: process.env.USER_ID
 };
 
+const port = process.env.PORT || "3000";
 const app = express();
+app.set("port", port);
 app.use(helmet({
   hsts: {
     maxAge: 15552001,
@@ -86,7 +89,27 @@ app.use((err, req, res) => {
   });
 });
 
+// start server
+const server = http.createServer(app);
+server.on("error", (error) => {
+  if (error.syscall !== "listen") {
+    throw error;
+  }
 
-module.exports = app;
-
-console.log("app started");
+  switch (error.code) {
+  case "EACCES":
+    console.error(`port ${port} requires elevated privileges`);
+    process.exit(1);
+    break;
+  case "EADDRINUSE":
+    console.error(`port ${port} is already in use`);
+    process.exit(1);
+    break;
+  default:
+    throw error;
+  }
+});
+server.on("listening", () => {
+  console.log(`app started started Listening on port ${port}`);
+});
+server.listen(port);
