@@ -1,6 +1,0 @@
-{
-  "esversion": 6,
-  "undef": true,
-  "unused": true,
-  "predef": [ "require", "document" ]
-}

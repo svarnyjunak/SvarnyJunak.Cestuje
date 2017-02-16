@@ -1227,16 +1227,6 @@ gulp-cssnano@^2.1.0:
     object-assign "^4.0.1"
     vinyl-sourcemaps-apply "^0.2.1"
 
-gulp-jshint@^2.0.0:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/gulp-jshint/-/gulp-jshint-2.0.2.tgz#68f44458d917b1702812a63bbe8ac6a9eb046aa3"
-  dependencies:
-    gulp-util "^3.0.0"
-    lodash "^4.12.0"
-    minimatch "^3.0.3"
-    rcloader "0.1.2"
-    through2 "~0.6.1"
-
 gulp-livereload@^3.8.1:
   version "3.8.1"
   resolved "https://registry.yarnpkg.com/gulp-livereload/-/gulp-livereload-3.8.1.tgz#00f744b2d749d3e9e3746589c8a44acac779b50f"
@@ -1678,19 +1668,6 @@ js-yaml@~3.6.1:
   dependencies:
     argparse "^1.0.7"
     esprima "^2.6.0"
-
-jshint@^2.9.1:
-  version "2.9.4"
-  resolved "https://registry.yarnpkg.com/jshint/-/jshint-2.9.4.tgz#5e3ba97848d5290273db514aee47fe24cf592934"
-  dependencies:
-    cli "~1.0.0"
-    console-browserify "1.1.x"
-    exit "0.1.x"
-    htmlparser2 "3.8.x"
-    lodash "3.7.x"
-    minimatch "~3.0.2"
-    shelljs "0.3.x"
-    strip-json-comments "1.0.x"
 
 json-stable-stringify@^1.0.1:
   version "1.0.1"

@@ -1,5 +1,5 @@
 {
-  "name": "SvarnyJunak.Cestuje",
+  "name": "svarnyjunak.cestuje",
   "version": "0.0.0",
   "private": true,
   "engines": {
@@ -22,16 +22,21 @@
     "serve-favicon": "~2.3.0"
   },
   "devDependencies": {
+    "babel-eslint": "^7.1.1",
     "chai": "^3.4.1",
+    "eslint": "^3.15.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-config-defaults": "^9.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.9.0",
     "gulp": "^3.9.0",
     "gulp-cssnano": "^2.1.0",
-    "gulp-jshint": "^2.0.0",
     "gulp-livereload": "^3.8.1",
     "gulp-notify": "^2.2.0",
     "gulp-rename": "^1.2.2",
     "gulp-stylelint": "^2.0.2",
     "gulp-uglify": "^1.5.1",
-    "jshint": "^2.9.1",
     "mocha": "^3.1.2"
   }
 }
