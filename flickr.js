@@ -2,15 +2,9 @@ const https = require("https");
 
 const flickrUrl = "https://api.flickr.com/services/rest/?format=json&nojsoncallback=?";
 function getFlickrUrl(method, options) {
-  let url = `${flickrUrl}&method=${method}`;
-
-  for (const option in options) {
-    if (Object.prototype.hasOwnProperty.call(options, option)) {
-      url += `&${option}=${options[option]}`;
-    }
-  }
-
-  return url;
+  const url = `${flickrUrl}&method=${method}`;
+  const parameters = Object.keys(options).map(key => `&${key}=${options[key]}`).join("");
+  return url + parameters;
 }
 
 function callFlickr(method, options) {
