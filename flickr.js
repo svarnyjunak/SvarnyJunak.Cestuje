@@ -16,7 +16,6 @@ function getFlickrUrl(method, options) {
 function callFlickr(method, options) {
   return new Promise((resolve, reject) => {
     const url = getFlickrUrl(method, options);
-    console.log(url);
     https.get(url, (response) => {
       let body = "";
       response.on("data", (d) => {
