@@ -110,7 +110,8 @@ server.on("error", (error) => {
   }
 });
 server.on("listening", () => {
-  console.log(`app started started Listening on port ${port}`);
+  console.log("App started")
+  console.log(`Listening on port ${port}`);
 });
 server.listen(port);
 
