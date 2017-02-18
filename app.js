@@ -10,6 +10,7 @@ const helmet = require("helmet");
 const flickr = require("./flickr");
 const routes = require("./routes/index");
 const photoset = require("./routes/photoset");
+const oldRoutes = require("./routes/oldRoutes");
 
 const isProduction = () => process.env.NODE_ENV === "production";
 const flickrOptions = {
@@ -56,6 +57,7 @@ app.use((req, res, next) => {
 });
 app.use("/", routes);
 app.use("/photoset", photoset);
+app.use(oldRoutes);
 
 // catch 404 and show static page.
 app.use((req, res) => {
