@@ -16,8 +16,12 @@ html
             a(href="/")
                 | Švarný junák na cestách
         if model && model.title
-          h2= model.title
+          if model.title.startsWith("Č")
+            h2(class="grammar-error") #{model.title}
+          else
+            h2=model.title
+
     block content
-    script(type='text/javascript' src="/javascripts/ga.min.js")
+    script(type="text/javascript" src="/javascripts/ga.min.js")
     
  
