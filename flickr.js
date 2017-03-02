@@ -10,7 +10,7 @@ function getFlickrUrl(method, options) {
 function callFlickr(method, options) {
   return new Promise((resolve, reject) => {
     const url = getFlickrUrl(method, options);
-    https.get(url, (response) => {
+    const request = https.get(url, (response) => {
       let body = "";
       response.on("data", (d) => {
         body += d;
@@ -19,9 +19,10 @@ function callFlickr(method, options) {
         const parsed = JSON.parse(body);
         resolve(parsed);
       });
-      response.on("error", (err) => {
-        reject(err);
-      });
+    });
+
+    request.on("error", (err) => {
+      reject(err);
     });
   });
 }
