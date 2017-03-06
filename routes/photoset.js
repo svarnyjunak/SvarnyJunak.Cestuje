@@ -5,7 +5,7 @@ const maxPictureHeight = 333;
 
 /* GET photoset page. */
 router.get("/:id", (req, res) => {
-  const error = e => res.status(500).send(e);
+  const error = message => e => res.status(500).send(message + " - " + e);
 
   const options = {
     api_key: req.flickrOptions.api_key,
@@ -27,17 +27,16 @@ router.get("/:id", (req, res) => {
 
       photo.width = (mediumSize.width * (maxPictureHeight / mediumSize.height)).toFixed(0);
       photo.height = maxPictureHeight;
-    }).catch(error));
+    }).catch(error("get size")));
 
     Promise.all(sizes).then(() => {
       res.render("photoset", { model: data });
-    })
-        .catch(error);
+    }).catch(error);
   };
 
   req.flickr.photosets.getPhotos(options)
-        .then(callback)
-        .catch(error);
+                      .then(callback)
+                      .catch(error("get photos"));
 });
 
 module.exports = router;
