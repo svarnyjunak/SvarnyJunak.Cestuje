@@ -72,10 +72,18 @@ describe("flickr", () => {
 
     describe(".getPhotos(options)", () => {
       it("should return promise with list of photos", (done) => {
-        flickr.photosets.getPhotos({ api_key: process.env.API_KEY, user_id: "23149896@N04", photoset_id: "72157633600591942" })
+        const options = {
+          api_key: process.env.API_KEY,
+          user_id: "23149896@N04",
+          photoset_id: "72157633600591942",
+          extras: "url_m"
+        };
+
+        flickr.photosets.getPhotos(options)
                 .then((result) => {
                   expect(result).to.have.a.property("photoset");
                   expect(result.photoset).to.have.a.property("photo");
+                  expect(result.photoset.photo[0]).to.have.a.property("url_m");
                   done();
                 })
                 .catch(console.log);

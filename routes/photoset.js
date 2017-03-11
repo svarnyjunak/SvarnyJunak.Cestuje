@@ -10,28 +10,27 @@ router.get("/:id", (req, res) => {
   const options = {
     api_key: req.flickrOptions.api_key,
     photoset_id: req.params.id,
-    user_id: req.flickrOptions.user_id
+    user_id: req.flickrOptions.user_id,
+    extras: "url_m"
   };
 
   const callback = (data) => {
     data.userId = options.user_id;
     data.title = data.photoset.title;
 
-    const sizes = data.photoset.photo.map(photo => req.flickr.photos.getSizes({
-      api_key: req.flickrOptions.api_key,
-      photo_id: photo.id
-    }).then((result) => {
-      const mediumSize = result.sizes.size.find(s => s.label === "Medium");
-      photo.url = mediumSize.source;
-      photo.isLandscape = mediumSize.width > mediumSize.height;
+    data.photoset.photo = data.photoset.photo.map(photo => ({
+      id: photo.id,
+      title: photo.title,
+      url: photo.url_m,
+      isLandscape: photo.width_m > photo.height_m,
+      width: (photo.width_m * (maxPictureHeight / photo.height_m)).toFixed(0),
+      height: maxPictureHeight,
+      farm: photo.farm,
+      server: photo.server,
+      secret: photo.secret
+    }));
 
-      photo.width = (mediumSize.width * (maxPictureHeight / mediumSize.height)).toFixed(0);
-      photo.height = maxPictureHeight;
-    }).catch(error("get size")));
-
-    Promise.all(sizes).then(() => {
-      res.render("photoset", { model: data });
-    }).catch(error);
+    res.render("photoset", { model: data });
   };
 
   req.flickr.photosets.getPhotos(options)
