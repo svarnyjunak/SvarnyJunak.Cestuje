@@ -11,7 +11,8 @@ router.get("/:id", (req, res) => {
     api_key: req.flickrOptions.api_key,
     photoset_id: req.params.id,
     user_id: req.flickrOptions.user_id,
-    extras: "url_m"
+    extras: "url_m,url_o"
+
   };
 
   const callback = (data) => {
@@ -21,7 +22,7 @@ router.get("/:id", (req, res) => {
     data.photoset.photo = data.photoset.photo.map(photo => ({
       id: photo.id,
       title: photo.title,
-      url: photo.url_m,
+      url: maxPictureHeight > photo.height_m ? photo.url_o : photo.url_m,
       isLandscape: photo.width_m > photo.height_m,
       width: (photo.width_m * (maxPictureHeight / photo.height_m)).toFixed(0),
       height: maxPictureHeight,
